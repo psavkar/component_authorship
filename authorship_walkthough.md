@@ -4,6 +4,7 @@ After completing this walkthrough, you will understand how to:
 - Invoke a component manually, or on a schedule or HTTP request
 - Maintain state across component invocations
 - Emit deduped events using the `unique` and `greatest` strategies
+- Use Pipedream managed OAuth for an app
 - Use npm packages in components
 
 We recommend that you execute the examples in order — each one builds on the concepts and practices of earlier examples. 

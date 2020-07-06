@@ -70,7 +70,7 @@ Open the URL returned by the CLI (`https://pipedream.com/sources/dc_v3uXKz` in t
 
 Then click **RUN NOW** to invoke your source. Your event will appear in real-time, and you can select it to inspect the emitted data.
 
-![source](hello-world-1.gif)
+![source](/images/hello-world-1.gif)
 
 ### Maintain state across invocations
 
@@ -122,7 +122,7 @@ module.exports = {
 
 Save the changes to your local file. Your component on Pipedream should automaticaly update. Then, return to the Pipedream UI and press **RUN NOW** — you should see the invocation count appear in the event list.
 
-![source](hello-world-2.gif)
+![source](/images/hello-world-2.gif)
 
 ### Invoke your code on a schedule
 
@@ -168,7 +168,7 @@ module.exports = {
 
 Save the changes to your file (your component on Pipedream should automaticaly update). and then, return to the Pipedream UI and **reload the page**. You should now see the timer settings in the summary and a countdown to the next execution (you can still run your component manually). Your component will now run every 15 seconds.
 
-![source](hello-world-3.gif)
+![source](/images/hello-world-3.gif)
 
 ### Invoke your code on HTTP requests
 
@@ -240,7 +240,7 @@ curl -d '{ "message": "hello world!" }' \
   "INSERT-YOUR-ENDPONT-URL-HERE"
 ```
 
-![source](hello-world-4.gif)
+![source](/images/hello-world-4.gif)
 
 # Part 2: Emit new RSS items on a schedule (~10 mins)
 

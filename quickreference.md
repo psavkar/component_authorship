@@ -62,36 +62,13 @@ module.exports = {
 | Property        | Type    | Required?    | Description                                                                |
 |-----------------|---------|-------------|----------------------------------------------------------------------------|
 | `name` | `string` | required | The name of the component, a string which identifies components deployed to users' accounts. This name will show up in the Pipedream UI, in CLI output (for example, from pd list commands), etc. It will also be converted to a unique slug on deploy to refernce a specific component instance (it will be auto-incremented if not unique within a user account). |
-| `version` | `string` | required | The component version. There are no constraints on the version, but consider using semantic versioning. |
+| `version` | `string` | required | The component version. There are no constraints on the version, but consider using [semantic versioning](https://semver.org/). |
 | `description` | `string` | recommended | The description will appear in the Pipedream UI to aid in discovery and to contextualize instantiated components |
 | `props` | `object` | optional | Props allow components to accept input on deploy. When deploying a component, users will be prompted to enter values for these props, setting the behavior of the component accordingly. When a value is passed to a prop attribute, it becomes a property on that component instance. You can reference these properties in component code using `this` (e.g., `this.propName`). |
 | `methods` | `object` | optional | Define component methods for the component instance. They can be referenced via `this` (e.g., `this.methodName()`). |
 | `hooks` | `object` | optional | Hooks are functions that are executed when specific component lifecycle events occur. Currently supported hooks are `activate()` and `deactivate()` (they execute when the component is activated or deactivated). |
 | `dedupe` | `string` | optional | You may specify a dedupe strategy (`unique`, `greatest`, `last`) to be applied to emitted events |
 | `run` | `method` | required | Each time a component is invoked (for example, via HTTP request), its `run` method is called. The event that triggered the component is passed to run, so that you can access it within the method. Events are emitted using `this.$emit()`. |
-
-# Name
-
-The name of the component, a **string** which identifies components deployed to users' accounts.
-
-This name will show up in the Pipedream UI, in CLI output (for example, from `pd list` commands), etc.
-
-## Name slugs
-
-Each time a user deploys a component to their account, a **name slug** is also generated, based on the name provided. Name slugs are composed of shell-safe characters, so you can reference the component by name slug in the CLI and other environments.
-
-For example, a name of `Hello, World!` will generate a name slug of `hello-world`.
-
-The name, as provided in the `name` property of the component, still appears in the Pipedream UI for the component. This lets you declare a human-readable name with any special characters you'd like. The name slug is displayed beside the name, and you use the name slug to interact with the component programmatically.
-
-If the user deploys a component to their account, but a component with that name slug already exists, the component will be named using an incrementing integer suffix. For example, if you deploy a component with the name `my-component` twice, the first deployed component will be named `my-component`, and the second deployed component will be named `my-component-1`.
-
-# Version
-
-The version of a component, a **string**.
-
-There are no constraints on the version, but consider using [semantic versioning](https://semver.org/).
-
 
 # Props
 

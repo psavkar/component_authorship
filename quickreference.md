@@ -27,7 +27,7 @@ To help you get started, we created a step-by-step walkthrough that demonstrates
 You can browse, instantiate and contribute to curated components in Pipedream's Github repo, or you can author your own and maintain your code via your standard CI/CD process.
 
 
-# Contents
+# Reference
 
 - [Component Structure](#component-structure)
 - [Props](#props)
@@ -92,6 +92,8 @@ module.exports = {
 
 User input props allow components to accept input on deploy. When deploying a component, users will be prompted to enter values for these props, setting the behavior of the component accordingly.
 
+### Defining User Input Props
+
 ```javascript
 props: {
   myPropName: {
@@ -108,24 +110,47 @@ props: {
 
 | Property        | Type    | Required? | Description |
 |-------------|----------------|---------------|--------|
-| `type`        | `string` | required | Value must be set to a valid prop type: `string` `string[]` `number` `boolean` |
+| `type`        | `string` | required | Value must be set to a valid prop type: `string` `string[]` `number` `boolean` `secret` |
 | `label`        | `string` | optional | A friendly label to show to user for this prop. If a label is not provided, the `propName` is displayed  to the user.  |
 | `description`        | `string` | optional | Displayed near the prop input. Typically used to contextualize the prop or provide instructions to help users input the correct value. Markdown is supported. |
-| `options`        | `[]` or `object[]` or `method` | optional | Provide an array to display options to a user in a drop down menu. Users may select a single option.<br>&nbsp;<br>**`[]` Basic usage**<br>Array of strings. E.g.,<br>`['option 1', 'option 2']`<br>&nbsp;<br>**`object[]` Define Label and Value**<br>`[{ label: 'Label 1', value: 'label1'}, { label: 'Label 2', value: 'label2'}]`<br>&nbsp;<br>**`method` Dynamic Options**<br>You can generate options dynamically (e.g., based on real-time API requests with pagination). See configuration details below. |
+| `options`        | `string[]` or `object[]` or `method` | optional | Provide an array to display options to a user in a drop down menu. Users may select a single option.<br>&nbsp;<br>**`[]` Basic usage**<br>Array of strings. E.g.,<br>`['option 1', 'option 2']`<br>&nbsp;<br>**`object[]` Define Label and Value**<br>`[{ label: 'Label 1', value: 'label1'}, { label: 'Label 2', value: 'label2'}]`<br>&nbsp;<br>**`method` Dynamic Options**<br>You can generate options dynamically (e.g., based on real-time API requests with pagination). See configuration details below. |
 | `optional`        | `boolean` | optional | Set to `true` to make this prop  optional. Defaults to `false`. |
 | `propDefinition`   | `[]` | optional | Re-use a prop defined in an app file. When you include a prop definition, the prop will inherit values for all the properties listed here. However, you can override those values by redefining them for a given prop instance. See **propDefinitions** below for usage. |
 | `default`        | `string` | optional | Define a default value if the field is not completed. Can only be defined for optional fields (required fields require explicit user input) |
 
 
-#### Referencing User Input Prop Values
+### Referencing User Input Prop Values
 
 | Code        | Description    | Read Scope | Write Scope |
 |-------------|----------------|-------------|--------|
 | `this.myPropName` | Returns the configured value of the prop | `run()` `hooks` `methods` | n/a (input props may only be modified on component deploy or update via UI, CLI or API) |
 
-#### Advanced Configuration
+### Usage Example
 
-##### Asyc Options ([example](https://github.com/PipedreamHQ/pipedream/blob/master/components/github/github.app.js))
+Following is a basic example that demonstrates how to capture user input via a prop and log the output to the console.
+
+```javascript
+module.exports = {
+  name: 'Example',
+  version: '0.1',
+  props: {
+    msg: {
+      type: "string",
+      label: "Message",
+      description: "Enter a message to `console.log()`"
+    }
+  },
+  async run() {
+    console.log(this.msg)
+  },
+}
+```
+
+To see more examples, explore the curated components in Pipedream's Github repo.
+
+### Advanced Configuration
+
+#### Asyc Options ([example](https://github.com/PipedreamHQ/pipedream/blob/master/components/github/github.app.js))
 
 Async options allow users to select prop values that are programatically generated (e.g., based on an real-time API response).
 
@@ -144,7 +169,7 @@ async options({
 
 
 
-##### Prop Definitions ([example](https://github.com/PipedreamHQ/pipedream/blob/master/components/github/new-commit.js))
+#### Prop Definitions ([example](https://github.com/PipedreamHQ/pipedream/blob/master/components/github/new-commit.js))
 
 Prop definitions enable you to reuse props that are defined in another object. A common use case is to enable re-use of props that are defined for a specific app.
 
@@ -178,6 +203,8 @@ Interface props are infrastructure abstractions provided by the Pipedream platfo
 | _HTTP_  | Invoke your code on HTTP requests                                                            |
 
 ### Timer
+
+### Defining Timer Interfaces
 
 To use the timer interface, declare a prop whose value is the string $.interface.timer:
 

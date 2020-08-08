@@ -1,8 +1,8 @@
-# Reference: Pipedream Component API
+# Component API Reference
 
 Pipedream components are Node.js modules that run on Pipedream's serverless infrastructure. This document is a reference for the component API. Please raise an issue or PR in this repo if you notice something out-of-date.
 
-## Component Capabilities
+## Capabilities
 
 - Trigger Node.js on HTTP requests, timers, cron schedules, or manually
 - Accept user input on deploy via [CLI](https://docs.pipedream.com/cli/reference/#pd-deploy), [API](https://docs.pipedream.com/api/rest/#overview), or [UI](https://pipedream.com/sources)
@@ -11,7 +11,7 @@ Pipedream components are Node.js modules that run on Pipedream's serverless infr
 - Store and retrieve state using the [built-in key-value store](#servicedb)
 - Emit data you process within the component, allowing you to trigger Pipedream hosted workflows or access it outside of Pipedream via API
 
-## Getting Started with the Component API
+## Getting Started
 
 To help you get started, we created a step-by-step walkthrough that demonstrates how to:
 

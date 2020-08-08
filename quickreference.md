@@ -1,14 +1,17 @@
 # Reference: Pipedream Component API
 
-Pipedream components are Node.js modules that run on Pipedream's serverless infrastructure. Components can be triggered on HTTP requests, timers, cron schedules, or manually. They can also:
+Pipedream components are Node.js modules that run on Pipedream's serverless infrastructure. This document is a reference for the component API. Please raise an issue or PR in this repo if you notice something out-of-date.
 
-- Accept input via props
+## Component Capabilities
+
+- Trigger Node.js on HTTP requests, timers, cron schedules, or manually
+- Accept user input on deploy via [CLI](https://docs.pipedream.com/cli/reference/#pd-deploy), [API](https://docs.pipedream.com/api/rest/#overview), or [UI](https://pipedream.com/sources)
 - Connect to 300+ apps using Pipedream managed auth
-- `require` any npm pacakge — no `npm install` or `package.json` required
+- Use most npm pacakges with no `npm install` or `package.json` required
 - Store and retrieve state using the [built-in key-value store](#servicedb)
 - Emit data you process within the component, allowing you to trigger Pipedream hosted workflows or access it outside of Pipedream via API
 
-You can browse, instantiate and contribute to curated components in Pipedream's Github repo, or you can author your own and maintain your code via your standard CI/CD process. You can deploy components to Pipedream using the [Pipedream CLI](https://docs.pipedream.com/cli/reference/#pd-deploy), [API](https://docs.pipedream.com/api/rest/#overview), or [UI](https://pipedream.com/sources).
+## Getting Started with the Component API
 
 To help you get started, we created a step-by-step walkthrough that demonstrates how to:
 
@@ -19,7 +22,10 @@ To help you get started, we created a step-by-step walkthrough that demonstrates
 - Use Pipedream managed OAuth for an app
 - Use npm packages in components
 
-This document is a comprehensive reference for the component API. Please raise an issue or PR in this repo if you notice something out-of-date.
+## Learn and Contribute
+
+You can browse, instantiate and contribute to curated components in Pipedream's Github repo, or you can author your own and maintain your code via your standard CI/CD process.
+
 
 # Contents
 
@@ -119,9 +125,9 @@ props: {
 
 #### Advanced Configuration
 
-##### Dynamic Options ([example](https://github.com/PipedreamHQ/pipedream/blob/master/components/github/github.app.js))
+##### Asyc Options ([example](https://github.com/PipedreamHQ/pipedream/blob/master/components/github/github.app.js))
 
-Dynamic options allow users to select prop values that are programatically generated (e.g., based on an real-time API response).
+Async options allow users to select prop values that are programatically generated (e.g., based on an real-time API response).
 
 ```javascript
 async options({ 

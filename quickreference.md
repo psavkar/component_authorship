@@ -196,6 +196,30 @@ props: {
 | `this.myPropName` | Returns the type of interface configured (e.g., `{ type: '$.interface.timer' }`) | `run()` `hooks` `methods` | n/a (interface props may only be modified on component deploy or update via UI, CLI or API) |
 | `event` | Returns an object with the invocation timestamp and interface configuration (e.g., `{ "timestamp": 1593937896, "interval_seconds": 3600 }`) | `run(event)` | n/a (interface props may only be modified on component deploy or update via UI, CLI or API) |
 
+#### Code Examples
+
+```javascript
+props: {
+  timer: {
+    type: "$.interface.timer"
+    default: {
+      cron: "0 0 * * *" // Run job once a day
+    }
+  }
+},
+```
+
+```javascript
+props: {
+  timer: {
+    type: "$.interface.timer"
+    default: {
+      intervalSeconds: 60 // Run job once a minute
+    }
+  }
+},
+```
+
 ### HTTP
 
 To use the HTTP interface, declare a prop whose value is the string $.interface.http:

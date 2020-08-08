@@ -125,7 +125,7 @@ props: {
 |-------------|----------------|-------------|--------|
 | `this.myPropName` | Returns the configured value of the prop | `run()` `hooks` `methods` | n/a (input props may only be modified on component deploy or update via UI, CLI or API) |
 
-### Usage Example
+### Example
 
 Following is a basic example that demonstrates how to capture user input via a prop and log the output to the console.
 

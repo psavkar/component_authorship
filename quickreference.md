@@ -82,10 +82,10 @@ module.exports = {
 
 | Prop Type        | Description    | 
 |-------------|----------------|
-| _User Input_ | Enable components to accept input on deploy |
-| _Interface_  | Attaches a Pipedream interface to your component (e.g., an HTTP interface or timer) |
-| _Service_  | Attaches a Pipedream service to  your component (e.g., a key-value database to maintain state) | 
-| _App_ | Enables managed auth for a component |
+| [User Input](#user-input-props) | Enable components to accept input on deploy |
+| [Interface](#interface-props)  | Attaches a Pipedream interface to your component (e.g., an HTTP interface or timer) |
+| [Service](#service-props)  | Attaches a Pipedream service to  your component (e.g., a key-value database to maintain state) | 
+| [App](#user-input-props) | Enables managed auth for a component |
 
 
 ## User Input Props

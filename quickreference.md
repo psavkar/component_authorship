@@ -152,7 +152,7 @@ To see more examples, explore the curated components in Pipedream's Github repo.
 
 #### Asyc Options ([example](https://github.com/PipedreamHQ/pipedream/blob/master/components/github/github.app.js))
 
-Async options allow users to select prop values that are programatically generated (e.g., based on an real-time API response).
+Async options allow users to select prop values that can be programatically generated (e.g., based on an real-time API response).
 
 ##### Definition
 

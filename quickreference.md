@@ -64,7 +64,7 @@ module.exports = {
 | `name` | `string` | required | The name of the component, a string which identifies components deployed to users' accounts. This name will show up in the Pipedream UI, in CLI output (for example, from pd list commands), etc. It will also be converted to a unique slug on deploy to refernce a specific component instance (it will be auto-incremented if not unique within a user account). |
 | `version` | `string` | required | The component version. There are no constraints on the version, but consider using [semantic versioning](https://semver.org/). |
 | `description` | `string` | recommended | The description will appear in the Pipedream UI to aid in discovery and to contextualize instantiated components |
-| `props` | `object` | optional | Props allow components to accept input on deploy. When deploying a component, users will be prompted to enter values for these props, setting the behavior of the component accordingly. When a value is passed to a prop attribute, it becomes a property on that component instance. You can reference these properties in component code using `this` (e.g., `this.propName`). |
+| `props` | `object` | optional | Props are custom attributes you can register on a component. When a value is passed to a prop attribute, it becomes a property on that component instance. You can reference these properties in component code using `this` (e.g., `this.propName`). |
 | `methods` | `object` | optional | Define component methods for the component instance. They can be referenced via `this` (e.g., `this.methodName()`). |
 | `hooks` | `object` | optional | Hooks are functions that are executed when specific component lifecycle events occur. Currently supported hooks are `activate()` and `deactivate()` (they execute when the component is activated or deactivated). |
 | `dedupe` | `string` | optional | You may specify a dedupe strategy (`unique`, `greatest`, `last`) to be applied to emitted events |
@@ -72,7 +72,7 @@ module.exports = {
 
 # Props
 
-Props allow components to accept input on deploy. When deploying a component, users will be prompted to enter values for these props, setting the behavior of the component accordingly. When a value is passed to a prop attribute, it becomes a property on that component instance. You can reference these properties in component code using `this` (e.g., `this.propName`). 
+ Props are custom attributes you can register on a component. When a value is passed to a prop attribute, it becomes a property on that component instance. You can reference these properties in component code using `this` (e.g., `this.propName`). 
 
 | Prop Type        | Description    | 
 |-------------|----------------|
@@ -83,6 +83,8 @@ Props allow components to accept input on deploy. When deploying a component, us
 
 
 ## User Input Props
+
+User input props allow components to accept input on deploy. When deploying a component, users will be prompted to enter values for these props, setting the behavior of the component accordingly.
 
 ```javascript
 props: {
@@ -119,6 +121,8 @@ props: {
 
 ##### Dynamic Options ([example](https://github.com/PipedreamHQ/pipedream/blob/master/components/github/github.app.js))
 
+Dynamic options allow users to select prop values that are programatically generated (e.g., based on an real-time API response).
+
 ```javascript
 async options({ 
   page,
@@ -135,6 +139,8 @@ async options({
 
 
 ##### Prop Definitions ([example](https://github.com/PipedreamHQ/pipedream/blob/master/components/github/new-commit.js))
+
+Prop definitions enable you to reuse props that are defined in another object. A common use case is to enable re-use of props that are defined for a specific app.
 
 ```javascript
 props: {
@@ -158,12 +164,16 @@ props: {
 
 ## Interface Props
 
+Interface props are infrastructure abstractions provided by the Pipedream platform. They declare how a component is invoked — via HTTP request, run on a schedule, etc. — and therefore define the shape of the events it processes.
+
 | Interface Type         | Description                                                                                  | 
 |---------------------|----------------------------------------------------------------------------------------------|
 | _Timer_ | Invoke your component on an interval (defaults to every hour) or based on a cron expression  | 
 | _HTTP_  | Invoke your code on HTTP requests                                                            |
 
 ### Timer
+
+To use the timer interface, declare a prop whose value is the string $.interface.timer:
 
 ```javascript
 props: {
@@ -187,6 +197,8 @@ props: {
 | `event` | Returns an object with the invocation timestamp and interface configuration (e.g., `{ "timestamp": 1593937896, "interval_seconds": 3600 }`) | `run(event)` | n/a (interface props may only be modified on component deploy or update via UI, CLI or API) |
 
 ### HTTP
+
+To use the HTTP interface, declare a prop whose value is the string $.interface.http:
 
 ```javascript
 props: {
@@ -249,7 +261,7 @@ this.http.respond({
 
 ## Service Props
 
-| Interface Type         | Description                                                                                  | 
+| Service         | Description                                                                                  | 
 |---------------------|----------------------------------------------------------------------------------------------|
 | _DB_ | Provides access to a simple, component-specific key-value store to maintain state across invocations.| 
 

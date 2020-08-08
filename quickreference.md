@@ -154,6 +154,8 @@ To see more examples, explore the curated components in Pipedream's Github repo.
 
 Async options allow users to select prop values that are programatically generated (e.g., based on an real-time API response).
 
+##### Definition
+
 ```javascript
 async options({ 
   page,
@@ -167,7 +169,30 @@ async options({
 | `page` | `integer` | optional |  Returns a `0` indexed page number. For use with APIs that accept a numeric page number for pagination. |
 | `prevContext` | `string` | optional | Return a string representing the context for the previous `options` invocation. For use with APIs that accept a token representing the last record for pagination. |
 
+##### Example
 
+```javascript
+module.exports = {
+  name: 'Example',
+  version: '0.1',
+  props: {
+    msg: {
+      type: "string",
+      label: "Message",
+      description: "Select a message to `console.log()`",
+      async options() {
+        return [
+          'This is option 1',
+          'This is option 2',
+        ]
+      },
+    }
+  },
+  async run() {
+    console.log(this.msg)
+  },
+}
+```
 
 #### Prop Definitions ([example](https://github.com/PipedreamHQ/pipedream/blob/master/components/github/new-commit.js))
 

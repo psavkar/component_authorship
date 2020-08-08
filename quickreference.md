@@ -92,7 +92,7 @@ module.exports = {
 
 User input props allow components to accept input on deploy. When deploying a component, users will be prompted to enter values for these props, setting the behavior of the component accordingly.
 
-### Defining User Input Props
+### Definition
 
 ```javascript
 props: {
@@ -119,7 +119,7 @@ props: {
 | `default`        | `string` | optional | Define a default value if the field is not completed. Can only be defined for optional fields (required fields require explicit user input) |
 
 
-### Referencing User Input Prop Values
+### Usage
 
 | Code        | Description    | Read Scope | Write Scope |
 |-------------|----------------|-------------|--------|
